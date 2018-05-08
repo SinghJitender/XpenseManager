@@ -9,4 +9,17 @@
     <color name="lightbluish">#2c8ca6</color>
     <color name="white">#ffffff</color>
     <color name="black_overlay">#66000000</color>
+    <!--Own Colours-->
+    <color name="RED">#FF5252</color>
+    <color name="PINK">#FF4081</color>
+    <color name="PURPLE">#E040FB</color>
+    <color name="BLUE">#2979FF</color>
+    <color name="CYAN">#00E5FF</color>
+    <color name="GREEN">#1DE9B6</color>
+    <color name="YELLOW">#FFC400</color>
+    <color name="ORANGE">#FF9100</color>
+    <color name="BROWN">#795548</color>
+    <color name="GREY">#607D8B</color>
+
+
 </resources>

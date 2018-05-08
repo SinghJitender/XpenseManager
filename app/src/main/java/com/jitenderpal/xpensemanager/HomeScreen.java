@@ -68,7 +68,7 @@ Hashtable<Integer,List<PieEntry>> piedata;
         spent.add(4000);spent.add(6700);spent.add(3500);spent.add(7000);
         piedata = new Hashtable<>();
         ArrayList<PieEntry> march = new ArrayList<PieEntry>();
-        march.add(new PieEntry((float) (1200),"DMart"));march.add(new PieEntry((float) (800),"Twilight"));march.add(new PieEntry((float) (1700),"BigBazaar"));march.add(new PieEntry((float) (300),"Chicken"));
+        march.add(new PieEntry((float) (1500),"DMart"));march.add(new PieEntry((float) (500),"Twilight"));march.add(new PieEntry((float) (1700),"BigBazaar"));march.add(new PieEntry((float) (300),"Chicken"));
         ArrayList<PieEntry> april = new ArrayList<PieEntry>();
         april.add(new PieEntry((float) (3000),"DMart"));april.add(new PieEntry((float) (500),"Twilight"));april.add(new PieEntry((float) (1500),"BigBazaar"));april.add(new PieEntry((float) (500),"Chicken"));april.add(new PieEntry((float) (1000),"Petrol"));april.add(new PieEntry((float) (200),"Eggs"));
         ArrayList<PieEntry> may = new ArrayList<PieEntry>();

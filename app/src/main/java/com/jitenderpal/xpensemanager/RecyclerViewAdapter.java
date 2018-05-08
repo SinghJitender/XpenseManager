@@ -3,6 +3,7 @@ package com.jitenderpal.xpensemanager;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -60,19 +62,23 @@ Context context;
         holder.spentamount.setText(spentamt.get(position)+"");
         holder.remainingamount.setText((budgetamt.get(position)-spentamt.get(position))+"");
         PieDataSet dataSet = new PieDataSet(piedata.get(position), budgetTitle.get(position).toString());
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        dataSet.setColors(com.jitenderpal.xpensemanager.ColorTemplate.OWN_COLORS);
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new DefaultValueFormatter(00));
         data.setValueTextSize(12f);
-        data.setValueTextColor(Color.BLACK);
+        data.setValueTextColor(Color.WHITE);
         //data.setValueTypeface(mTfLight);
         holder.pieChart.setDrawEntryLabels(false);
+        dataSet.setSliceSpace(1f);
         holder.pieChart.setData(data);
         holder.pieChart.animateXY(800, 400);
         Description d = new Description();
         d.setText(budgetTitle.get(position));
         holder.pieChart.setDescription(d);
-
+        try {holder.pieChart.highlightValue(2f,0,false);
+        }
+        catch (Exception e) {
+            Log.d("Highlight Error",e+"");}
 
     }
 
@@ -97,8 +103,6 @@ Context context;
             pieChart.setDrawHoleEnabled(true);
             pieChart.setTransparentCircleRadius(35f);
             pieChart.setHoleRadius(30f);
-
-
         }
     }
 
