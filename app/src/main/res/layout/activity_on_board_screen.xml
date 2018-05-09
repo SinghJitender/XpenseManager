@@ -1,65 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jitenderpal.xpensemanager.OnBoardScreen"
-    android:background="@drawable/gradient_onboardscreen">
+    android:orientation="vertical"
+    android:weightSum="2"
+    android:background="@drawable/gradient_onboardscreen"
+    tools:context="com.jitenderpal.xpensemanager.OnBoardScreen">
+   <LinearLayout
+       android:id="@+id/upperlayout"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:gravity="center"
+       android:layout_weight="1">
+
+       <TextView
+           android:id="@+id/appName"
+           android:gravity="center"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_alignParentTop="true"
+           android:layout_centerHorizontal="true"
+           android:fontFamily="@font/appnamefont"
+           android:text="XpenseManager"
+           android:textColor="#fff"
+           android:textSize="45sp" />
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lowerlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/top_round_layout_onboard_screen">
 
 
-    <TextView
-        android:id="@+id/appName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="131dp"
-        android:fontFamily="@font/appnamefont"
-        android:text="XpenseManager"
-        android:textColor="#fff"
-        android:textSize="45sp" />
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/round_edittext_onboard"
+            android:ems="10"
+            android:textColorHint="#BEBEBE"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@null"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center"
+            android:hint="Enter your name"
+            android:inputType="textPersonName"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/orange" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/round_edittext_onboard"
-        android:ems="10"
-        android:textColorHint="#BEBEBE"
-        android:cursorVisible="true"
-        android:textCursorDrawable="@null"
-        android:gravity="center_horizontal"
-        android:hint="Your Name Goes Here"
-        android:inputType="textPersonName"
-        android:paddingBottom="5dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="5dp"
-        android:textColor="#fff" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/transparent_button"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Lets Start"
+            android:layout_gravity="center"
+            android:textColor="@color/orange" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:background="@drawable/transparent_button"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="Lets Start"
-        android:textColor="#fff" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp"
-        android:text="All your expenses at one place"
-        android:textColor="#fff" />
-</RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -91,11 +91,11 @@
                 />
 
             </LinearLayout>
-               <android.support.v7.widget.AppCompatImageView
+              <!-- <android.support.v7.widget.AppCompatImageView
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    app:srcCompat="@drawable/drawerbackground"
-                   android:scaleType="centerCrop"/>
+                   android:scaleType="centerCrop"/>-->
            </RelativeLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
         

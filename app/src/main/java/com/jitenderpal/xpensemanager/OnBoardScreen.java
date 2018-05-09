@@ -1,7 +1,9 @@
 package com.jitenderpal.xpensemanager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +21,12 @@ Button submit ;
 EditText name ;
 Animation fadeInAnimation;
 SharedPreferences.Editor editor;
+LinearLayout lowerLayout;
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getWindow().setStatusBarColor(Color.parseColor(getResources().getString(R.color.orange)));
         SharedPreferences prefs = getSharedPreferences("xpensemanager", MODE_PRIVATE);
         /*if (prefs.getInt("flag", 0) == 1) {
             Intent i = new Intent(OnBoardScreen.this, HomeScreen.class);
@@ -30,12 +35,13 @@ SharedPreferences.Editor editor;
         } else {*/
             setContentView(R.layout.activity_on_board_screen);
             fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-
+            lowerLayout = (LinearLayout) findViewById(R.id.lowerlayout);
             //getSupportActionBar().hide();
             editor = getSharedPreferences("xpensemanager", MODE_PRIVATE).edit();
             submit = (Button) findViewById(R.id.button);
             name = (EditText) findViewById(R.id.editText);
-            submit.startAnimation(fadeInAnimation);
+            //submit.startAnimation(fadeInAnimation);
+            lowerLayout.startAnimation(fadeInAnimation);
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
