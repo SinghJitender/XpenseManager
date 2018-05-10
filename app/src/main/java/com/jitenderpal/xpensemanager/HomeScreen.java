@@ -1,5 +1,6 @@
 package com.jitenderpal.xpensemanager;
 
+import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class HomeScreen extends AppCompatActivity {
-EditText budgetTitle;
+//EditText budgetTitle;
 Button createBudget;
 ArrayList<String> title,date;
 ArrayList<Integer> amount,spent;
@@ -28,7 +29,7 @@ Hashtable<Integer,List<PieEntry>> piedata;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        budgetTitle= (EditText)findViewById(R.id.budgettitle);
+        //budgetTitle= (EditText)findViewById(R.id.budgettitle);
         createBudget = (Button)findViewById(R.id.createbudget);
 
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingtoolbar);
@@ -45,20 +46,26 @@ Hashtable<Integer,List<PieEntry>> piedata;
                 if (scrollRange + verticalOffset == 0) {
                     collapsingToolbarLayout.setTitle("XpenseManager");
                     collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
-                    budgetTitle.setVisibility(View.INVISIBLE);
+                   // budgetTitle.setVisibility(View.INVISIBLE);
                     createBudget.setVisibility(View.INVISIBLE);
                     isShow = true;
                 } else if(isShow) {
                     collapsingToolbarLayout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
-                    budgetTitle.setVisibility(View.VISIBLE);
+                   // budgetTitle.setVisibility(View.VISIBLE);
                     createBudget.setVisibility(View.VISIBLE);
                     isShow = false;
                 }
             }
         });
 
-
-        title = new ArrayList<>();
+        createBudget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),AddNewExpense.class) ;
+                startActivity(i);
+            }
+        });
+                title = new ArrayList<>();
         title.add("March");title.add("April");title.add("May");title.add("June");
         date = new ArrayList<>();
         date.add("01/03/2018");date.add("01/04/2018");date.add("01/05/2018");date.add("01/06/2018");
