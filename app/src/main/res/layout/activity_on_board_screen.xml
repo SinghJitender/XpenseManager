@@ -37,8 +37,8 @@
         android:gravity="center"
         android:layout_weight="1"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
-        <!--android:background="@drawable/top_round_layout_onboard_screen"-->
+        android:layout_marginRight="5dp"
+        android:background="@drawable/top_round_layout_onboard_screen">
 
 
         <EditText
