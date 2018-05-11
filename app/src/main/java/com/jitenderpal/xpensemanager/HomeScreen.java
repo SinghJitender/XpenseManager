@@ -28,7 +28,7 @@ Hashtable<Integer,List<PieEntry>> piedata;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-
+        getSupportActionBar().hide();
         //budgetTitle= (EditText)findViewById(R.id.budgettitle);
         createBudget = (Button)findViewById(R.id.createbudget);
 

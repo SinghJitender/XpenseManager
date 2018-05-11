@@ -20,6 +20,7 @@
     <color name="ORANGE">#FF9100</color>
     <color name="BROWN">#795548</color>
     <color name="GREY">#607D8B</color>
+    <color name="BLACK">#000000</color>
 
 
 </resources>

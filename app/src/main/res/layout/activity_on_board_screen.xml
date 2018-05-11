@@ -24,7 +24,7 @@
            android:layout_centerHorizontal="true"
            android:fontFamily="@font/appnamefont"
            android:text="XpenseManager"
-           android:textColor="#fff"
+           android:textColor="@color/GREY"
            android:textSize="45sp" />
 
    </LinearLayout>
@@ -60,7 +60,7 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingTop="5dp"
-            android:textColor="@color/orange" />
+            android:textColor="@color/GREY" />
 
         <Button
             android:id="@+id/button"
@@ -74,7 +74,7 @@
             android:paddingRight="10dp"
             android:text="Lets Start"
             android:layout_gravity="center"
-            android:textColor="@color/orange" />
+            android:textColor="@color/GREY" />
 
     </LinearLayout>
 </LinearLayout>

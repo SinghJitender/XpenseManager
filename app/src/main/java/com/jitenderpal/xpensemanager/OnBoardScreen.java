@@ -26,7 +26,7 @@ LinearLayout lowerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(Color.parseColor(getResources().getString(R.color.orange)));
+       // getWindow().setStatusBarColor(Color.parseColor(getResources().getString(R.color.orange)));
         SharedPreferences prefs = getSharedPreferences("xpensemanager", MODE_PRIVATE);
         /*if (prefs.getInt("flag", 0) == 1) {
             Intent i = new Intent(OnBoardScreen.this, HomeScreen.class);
@@ -36,7 +36,7 @@ LinearLayout lowerLayout;
             setContentView(R.layout.activity_on_board_screen);
             fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
             lowerLayout = (LinearLayout) findViewById(R.id.lowerlayout);
-            //getSupportActionBar().hide();
+            getSupportActionBar().hide();
             editor = getSharedPreferences("xpensemanager", MODE_PRIVATE).edit();
             submit = (Button) findViewById(R.id.button);
             name = (EditText) findViewById(R.id.editText);
