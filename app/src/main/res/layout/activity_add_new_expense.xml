@@ -6,32 +6,67 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AddNewExpense"
+    android:background="@color/white"
     android:weightSum="10">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="1">
-
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/BLUE"
+            android:gravity="center|bottom"
+            android:layout_marginTop="10dp"
+            android:text="Date"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/dateinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/GREY"
+            android:gravity="center|top"
+            android:text="Tap to change date"
+            android:textSize="10sp"
+            android:layout_marginBottom="5dp" />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:isScrollContainer="false">
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_margin="20dp">
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+                <TextView
+                    android:id="@+id/error"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/RED"
+                    android:gravity="center|bottom"
+                    android:text=""
+                    android:textSize="12sp" />
 
                 <com.github.florent37.materialtextfield.MaterialTextField
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:mtf_labelColor="#000"
-                    app:mtf_backgroundColor="@color/CYAN"
+                    app:mtf_backgroundColor="@color/lightgrey"
                     app:mtf_image="@drawable/title"
+                    app:mtf_animationDuration="200"
                     android:padding="5dp">
 
-                    <EditText
+                    <AutoCompleteTextView
+                        android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Title"
@@ -46,14 +81,17 @@
                     android:layout_height="wrap_content"
                     app:mtf_labelColor="#000"
                     app:mtf_image="@drawable/amount"
-                    app:mtf_backgroundColor="@color/GREEN"
+                    app:mtf_backgroundColor="@color/lightgrey"
+                    app:mtf_animationDuration="200"
                     android:padding="5dp">
 
                     <EditText
+                        android:id="@+id/amount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Amount"
                         android:textColor="#000"
+                        android:inputType="number"
                         android:textColorHint="#000"
                         android:textSize="15sp" />
                 </com.github.florent37.materialtextfield.MaterialTextField>
@@ -63,10 +101,12 @@
                     android:layout_height="wrap_content"
                     app:mtf_labelColor="#000"
                     app:mtf_image="@drawable/description"
-                    app:mtf_backgroundColor="@color/YELLOW"
+                    app:mtf_backgroundColor="@color/lightgrey"
+                    app:mtf_animationDuration="200"
                     android:padding="5dp">
 
                     <EditText
+                        android:id="@+id/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Description"
@@ -82,22 +122,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:mtf_labelColor="#000"
-                    app:mtf_image="@drawable/tags"
-                    app:mtf_backgroundColor="@color/PINK"
+                    app:mtf_image="@drawable/tag"
+                    app:mtf_backgroundColor="@color/lightgrey"
+                    app:mtf_animationDuration="200"
                     android:padding="5dp">
 
-                    <EditText
+                    <AutoCompleteTextView
+                        android:id="@+id/tags"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Tags"
-                        android:minHeight="100dp"
+                        android:digits="0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz,. "
                         android:textColor="#000"
                         android:textColorHint="#000"
                         android:inputType="textMultiLine"
                         android:textSize="15sp" />
 
                 </com.github.florent37.materialtextfield.MaterialTextField>
-
+                <TextView
+                    android:id="@+id/tagsinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/GREY"
+                    android:gravity="left|top"
+                    android:text="Tags must be seperated by commas(Example : Family, Food, etc.)"
+                    android:textSize="10sp"
+                    android:padding="5dp"
+                    />
 
 
             </LinearLayout>
@@ -113,6 +164,7 @@
 
 
         <Button
+            android:id="@+id/save"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Save"

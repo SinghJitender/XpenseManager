@@ -47,8 +47,11 @@ public class ColorTemplate {
             rgb("#2ecc71"), rgb("#f1c40f"), rgb("#e74c3c"), rgb("#3498db")
     };
     public static final int[] OWN_COLORS = {
-            rgb("#FF5252"), rgb("#FF4081"), rgb("#1DE9B6"),
-            rgb("#FFC400"), rgb("#E040FB"), rgb("#2979FF"), rgb("#00E5FF"), rgb("#FF9100"), rgb("#795548"), rgb("#607D8B")
+           /* rgb("#FF5252"), rgb("#FF4081"), rgb("#1DE9B6"),
+            rgb("#FFC400"), rgb("#E040FB"), rgb("#2979FF"),
+            rgb("#00E5FF"), rgb("#34495E"),rgb("#E74C3C"), */
+            rgb("#154360"),rgb("#A9CCE3"),rgb("#2874A6"),
+            rgb("#3498DB"),rgb("#0080FF"),rgb("#57A0D3"),rgb("#4682B4")
     };
     /**
      * Converts the given hex-color-string to rgb.

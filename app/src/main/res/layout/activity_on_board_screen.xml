@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="2"
+    android:weightSum="5"
     android:background="@drawable/gradient_onboardscreen"
     tools:context="com.jitenderpal.xpensemanager.OnBoardScreen">
    <LinearLayout
@@ -13,7 +13,7 @@
        android:layout_height="match_parent"
        android:orientation="vertical"
        android:gravity="center"
-       android:layout_weight="1">
+       android:layout_weight="3">
 
        <TextView
            android:id="@+id/appName"
@@ -24,7 +24,7 @@
            android:layout_centerHorizontal="true"
            android:fontFamily="@font/appnamefont"
            android:text="XpenseManager"
-           android:textColor="@color/GREY"
+           android:textColor="@color/white"
            android:textSize="45sp" />
 
    </LinearLayout>
@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/top_round_layout_onboard_screen">
@@ -60,7 +60,7 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingTop="5dp"
-            android:textColor="@color/GREY" />
+            android:textColor="@color/BLACK" />
 
         <Button
             android:id="@+id/button"
@@ -74,7 +74,7 @@
             android:paddingRight="10dp"
             android:text="Lets Start"
             android:layout_gravity="center"
-            android:textColor="@color/GREY" />
+            android:textColor="@color/BLACK" />
 
     </LinearLayout>
 </LinearLayout>

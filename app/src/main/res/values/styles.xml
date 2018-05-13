@@ -3,9 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/CYAN</item>
-        <item name="colorPrimaryDark">@color/CYAN</item>
+        <item name="colorPrimary">@color/BLUE</item>
+        <item name="colorPrimaryDark">@color/BLUE</item>
         <item name="colorAccent">@color/BLACK</item>
+        <item name="android:datePickerDialogTheme">@style/MyDatePickerDialogTheme</item>
     </style>
 
     <style name="FullscreenTheme" parent="AppTheme">
@@ -20,4 +21,11 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+    <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
+        <item name="android:colorAccent">@color/BLUE</item>
+    </style>
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:headerBackground">@color/BLUE</item>
+    </style>
 </resources>

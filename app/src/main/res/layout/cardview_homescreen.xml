@@ -4,9 +4,8 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_height="200dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="2dp"
-    app:cardCornerRadius="4dp">
+    android:id="@+id/cardview"
+    android:layout_margin="5dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,12 +26,13 @@
             android:padding="5dp"
             android:orientation="vertical"
             android:weightSum="4"
+            android:elevation="1dp"
             android:background="#fff"
             >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:orientation="vertical"
                 android:weightSum="2">
                 <TextView
@@ -42,13 +42,15 @@
                     android:layout_weight="1"
                     android:text="Budget Title"
                     android:gravity="center|bottom"
-                    android:textSize="15sp"/>
+                    android:textColor="@color/BLACK"
+                    android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="Date"
+                    android:textColor="@color/BLACK"
                     android:textSize="10sp"
                     android:gravity="center|top"/>
 
@@ -56,82 +58,30 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:orientation="vertical"
-                android:weightSum="2">
+                android:weightSum="5">
             <TextView
-                android:id="@+id/totalbudget"
+                android:id="@+id/totaltextview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Total Budget"
+                android:text="Total"
+                android:textColor="@color/BLACK"
                 android:gravity="center|bottom"
                 android:textSize="10sp"/>
             <TextView
-                android:id="@+id/totalbudgetamt"
+                android:id="@+id/total"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="4"
                 android:text="Rs. Amount"
-                android:textSize="20sp"
-                android:gravity="center"/>
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/primaryText"
+                android:gravity="center|top"/>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="2">
-                <TextView
-                    android:id="@+id/totalspent"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="Total Spent"
-                    android:gravity="center|bottom"
-                    android:textSize="10sp"/>
-                <TextView
-                    android:id="@+id/totalspentamt"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="Rs. Amount"
-                    android:textSize="20sp"
-                    android:gravity="center"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="2">
-                <TextView
-                    android:id="@+id/remaining"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="Remaining Amount"
-                    android:gravity="center|bottom"
-                    android:textSize="10sp"/>
-                <TextView
-                    android:id="@+id/remainingamt"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="Rs. Amount"
-                    android:textSize="20sp"
-                    android:gravity="center"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
 
 
         </LinearLayout>

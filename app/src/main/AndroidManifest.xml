@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeScreen" />
-        <activity android:name=".AddNewExpense"></activity>
+        <activity android:name=".AddNewExpense" />
+        <activity android:name=".ExpenseDetails"></activity>
     </application>
 
 </manifest>

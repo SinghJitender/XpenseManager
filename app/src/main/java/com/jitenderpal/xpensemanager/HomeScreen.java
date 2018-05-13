@@ -1,15 +1,21 @@
 package com.jitenderpal.xpensemanager;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieEntry;
@@ -18,19 +24,28 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import Helpers.StaticData;
+
 public class HomeScreen extends AppCompatActivity {
-//EditText budgetTitle;
+TextView appName;
 Button createBudget;
 ArrayList<String> title,date;
 ArrayList<Integer> amount,spent;
 Hashtable<Integer,List<PieEntry>> piedata;
+Hashtable<Integer,ArrayList<Float>> pieinfo;
+Hashtable<Integer,ArrayList<Float>> maxValue;
+SQLiteDatabase mydatabase;
+Animation fadeIn,fadeOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         getSupportActionBar().hide();
-        //budgetTitle= (EditText)findViewById(R.id.budgettitle);
+        mydatabase = openOrCreateDatabase(StaticData.DATABASE_NAME, MODE_PRIVATE, null);
+        appName= (TextView) findViewById(R.id.appName);
         createBudget = (Button)findViewById(R.id.createbudget);
+        fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
 
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingtoolbar);
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbarlayout);
@@ -46,13 +61,17 @@ Hashtable<Integer,List<PieEntry>> piedata;
                 if (scrollRange + verticalOffset == 0) {
                     collapsingToolbarLayout.setTitle("XpenseManager");
                     collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
-                   // budgetTitle.setVisibility(View.INVISIBLE);
+                    appName.setVisibility(View.INVISIBLE);
                     createBudget.setVisibility(View.INVISIBLE);
+                    appName.startAnimation(fadeOut);
+                    createBudget.startAnimation(fadeOut);
                     isShow = true;
                 } else if(isShow) {
                     collapsingToolbarLayout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
-                   // budgetTitle.setVisibility(View.VISIBLE);
+                    appName.setVisibility(View.VISIBLE);
                     createBudget.setVisibility(View.VISIBLE);
+                    appName.startAnimation(fadeIn);
+                    createBudget.startAnimation(fadeIn);
                     isShow = false;
                 }
             }
@@ -65,10 +84,55 @@ Hashtable<Integer,List<PieEntry>> piedata;
                 startActivity(i);
             }
         });
-                title = new ArrayList<>();
+        int key=0;
+        piedata = new Hashtable<>();
+        pieinfo = new Hashtable<>();
+        maxValue = new Hashtable<>();
+
+        Cursor yearSet = mydatabase.rawQuery("Select DISTINCT(year) from  "+ StaticData.MAIN_TABLE_NAME + " ORDER BY year DESC", null);
+        int rows = yearSet.getCount();
+        for(int i=0;i<rows;i++)
+        {
+              yearSet.moveToNext();
+              int year = yearSet.getInt(0);
+              int[] month;
+              Cursor monthSet = mydatabase.rawQuery("Select DISTINCT(month) from  "+StaticData.MAIN_TABLE_NAME + " where year="+year+" ORDER BY month DESC", null);
+              int allMonths = monthSet.getCount();
+              month= new int[allMonths];
+              for(int j=0;j<allMonths;j++)
+              {
+                  monthSet.moveToNext();
+                  month[j]=monthSet.getInt(0);
+                  Cursor total = mydatabase.rawQuery( "SELECT sum(amount) FROM "+ StaticData.MAIN_TABLE_NAME+" where year = '"+year+"' AND month='"+month[j]+"' GROUP BY month", null);
+                  total.moveToNext();
+                 // Log.d("Month",month[j]+" - "+year+" - "+total.getFloat(0));
+                  Cursor itemSet = mydatabase.rawQuery( "SELECT title, sum(amount) FROM "+ StaticData.MAIN_TABLE_NAME+" where year = '"+year+"' AND month='"+month[j]+"' GROUP BY title", null);
+                  int allItem = itemSet.getCount();
+                  ArrayList<Float> temp = new ArrayList<>();
+                  temp.add((float) year);
+                  temp.add((float) month[j]);
+                  temp.add(total.getFloat(0));
+
+                  ArrayList<PieEntry> data = new ArrayList<PieEntry>();
+                  ArrayList<Float> max = new ArrayList<Float>();
+                  for(int k=0;k<allItem;k++)
+                  {
+                      itemSet.moveToNext();
+                     // Log.d("Month",itemSet.getString(0)+" - "+itemSet.getFloat(1));
+                      data.add(new PieEntry(itemSet.getFloat(1),itemSet.getString(0)));
+                      max.add(itemSet.getFloat(1));
+                  }
+                    piedata.put(key,data);
+                    pieinfo.put(key,temp);
+                    maxValue.put(key,max);
+                    key++;
+              }
+        }
+
+       /* title = new ArrayList<>();
         title.add("March");title.add("April");title.add("May");title.add("June");
         date = new ArrayList<>();
-        date.add("01/03/2018");date.add("01/04/2018");date.add("01/05/2018");date.add("01/06/2018");
+        date.add("2018");date.add("2018");date.add("2018");date.add("2018");
         amount = new ArrayList<>();
         amount.add(5000);amount.add(10000);amount.add(8500);amount.add(6000);
         spent = new ArrayList<>();
@@ -82,11 +146,10 @@ Hashtable<Integer,List<PieEntry>> piedata;
         may.add(new PieEntry((float) (800),"Petrol"));may.add(new PieEntry((float) (1500),"DMart"));may.add(new PieEntry((float) (1200),"Fruits"));
         ArrayList<PieEntry> june = new ArrayList<PieEntry>();
         june.add(new PieEntry((float) (1500),"Petrol"));june.add(new PieEntry((float) (1500),"BigBazaar"));june.add(new PieEntry((float) (2000),"Twilight"));june.add(new PieEntry((float) (500),"DMart"));june.add(new PieEntry((float) (600),"Milk"));june.add(new PieEntry((float) (400),"Butter"));june.add(new PieEntry((float) (500),"Bike Service"));
-        piedata.put(0,march);piedata.put(1,april);piedata.put(2,may);piedata.put(3,june);
+        piedata.put(0,march);piedata.put(1,april);piedata.put(2,may);piedata.put(3,june);*/
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-
-        RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(title,piedata,date,amount,spent,this);
+        RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(pieinfo,piedata,maxValue,this);
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
         recyclerView.setAdapter(mAdapter);
     }
