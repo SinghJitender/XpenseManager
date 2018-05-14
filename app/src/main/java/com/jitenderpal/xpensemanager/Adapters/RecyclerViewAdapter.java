@@ -1,11 +1,10 @@
-package com.jitenderpal.xpensemanager;
+package com.jitenderpal.xpensemanager.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +17,8 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.jitenderpal.xpensemanager.ExpenseDetails;
+import com.jitenderpal.xpensemanager.R;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -83,6 +81,11 @@ Context context;
                 //implement onClick
                 Toast.makeText(context,"Clicked at : "+position,Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(context,ExpenseDetails.class);
+
+                i.putExtra("year",Math.round(pieinfo.get(position).get(0)));
+                i.putExtra("month",Math.round(pieinfo.get(position).get(1)));
+                i.putExtra("total",pieinfo.get(position).get(2));
+
                 context.startActivity(i);
             }
         });

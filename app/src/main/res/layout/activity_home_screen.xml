@@ -37,7 +37,9 @@
                  app:layout_collapseMode="pin"
                  app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                  android:layout_width="match_parent"
-                 android:layout_height="?attr/actionBarSize"></android.support.v7.widget.Toolbar>
+                 android:layout_height="?android:attr/actionBarSize">
+
+            </android.support.v7.widget.Toolbar>
             <LinearLayout
                 android:elevation="1dp"
                 android:layout_width="match_parent"

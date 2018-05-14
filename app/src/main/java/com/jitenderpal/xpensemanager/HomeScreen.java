@@ -9,16 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieEntry;
+import com.jitenderpal.xpensemanager.Adapters.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

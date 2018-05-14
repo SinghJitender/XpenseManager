@@ -53,6 +53,10 @@ public class ColorTemplate {
             rgb("#154360"),rgb("#A9CCE3"),rgb("#2874A6"),
             rgb("#3498DB"),rgb("#0080FF"),rgb("#57A0D3"),rgb("#4682B4")
     };
+
+    public static final int[] MONTHLY_EXPENSE_COLOUR = {
+            rgb("#2874A6"),rgb("#A9CCE3"), rgb("#3498DB"),rgb("#0080FF"),rgb("#57A0D3"),rgb("#4682B4")
+    };
     /**
      * Converts the given hex-color-string to rgb.
      *
