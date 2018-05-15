@@ -72,12 +72,22 @@ float total;
         dataset.setValueTextSize(10f);
         dataset.setColors(ColorTemplate.MONTHLY_EXPENSE_COLOUR);
         //dataset.setBarSpacePercent(50f);
-        String labels[] = new String[]{"ABC","DEF"};
+        String labels[] = new String[3];
+        labels[0]=titles.get(position).trim(); labels[1]=", OTHER" ; labels[2]=", TOTAL";
         //dataset.setStackLabels(labels);
         BarData data = new BarData(dataset);
-        data.setBarWidth(.7f);
-        holder.mChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
-        holder.mChart.getXAxis().setCenterAxisLabels(true);
+        data.setBarWidth(.6f);
+        //holder.mChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+        //holder.mChart.getXAxis().setCenterAxisLabels(false);
+        Legend l = holder.mChart.getLegend();
+        l.setExtra(new int[]{0,0,0},labels);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setDrawInside(false);
+        l.setFormSize(8f);
+        l.setXEntrySpace(4f);
+        l.setYOffset(5f);
         holder.mChart.setData(data);
         holder.mChart.invalidate();
 
@@ -142,7 +152,7 @@ float total;
             mChart.getXAxis().setLabelRotationAngle(90f);
             /*mChart.getAxisRight().setInverted(false);
             mChart.getAxisLeft().setInverted(true);*/
-            mChart.getXAxis().setDrawLabels(true);
+            mChart.getXAxis().setDrawLabels(false);
 
             mChart.getAxisLeft().setDrawGridLines(false);
             mChart.getAxisRight().setDrawGridLines(false);
