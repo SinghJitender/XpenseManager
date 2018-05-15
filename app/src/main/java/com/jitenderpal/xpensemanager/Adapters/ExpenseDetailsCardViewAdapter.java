@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -22,6 +23,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.jitenderpal.xpensemanager.ColorTemplate;
 import com.jitenderpal.xpensemanager.R;
@@ -62,15 +64,22 @@ float total;
         ArrayList<BarEntry> bardata = new ArrayList<>();
         Log.d("J:ExpenseCardView",total+"");
 
-        bardata.add(new BarEntry(sumAmount.get(position),0));
-        bardata.add(new BarEntry((total-sumAmount.get(position)),1));
-        BarDataSet dataset = new BarDataSet(bardata, "");
+        bardata.add(new BarEntry(2f,sumAmount.get(position)));
+        bardata.add(new BarEntry(1f,total-sumAmount.get(position)));
+        bardata.add(new BarEntry(0f,total));
 
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add(titles.get(position));
-        labels.add("Remaining");
+        BarDataSet dataset = new BarDataSet(bardata,"");
+        dataset.setValueTextSize(10f);
+        dataset.setColors(ColorTemplate.MONTHLY_EXPENSE_COLOUR);
+        //dataset.setBarSpacePercent(50f);
+        String labels[] = new String[]{"ABC","DEF"};
+        //dataset.setStackLabels(labels);
         BarData data = new BarData(dataset);
+        data.setBarWidth(.7f);
+        holder.mChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+        holder.mChart.getXAxis().setCenterAxisLabels(true);
         holder.mChart.setData(data);
+        holder.mChart.invalidate();
 
         /*setData(12, 50,holder.mChart);
         holder.mChart.setFitBars(true);
@@ -129,33 +138,26 @@ float total;
 
             mChart = (HorizontalBarChart)itemView.findViewById(R.id.chart1);
            // mChart.setOnChartValueSelectedListener(context);
-            mChart.setDrawBarShadow(false);
-            mChart.setDrawValueAboveBar(true);
+            mChart.getXAxis().setDrawGridLines(false);
+            mChart.getXAxis().setLabelRotationAngle(90f);
+            /*mChart.getAxisRight().setInverted(false);
+            mChart.getAxisLeft().setInverted(true);*/
+            mChart.getXAxis().setDrawLabels(true);
+
+            mChart.getAxisLeft().setDrawGridLines(false);
+            mChart.getAxisRight().setDrawGridLines(false);
+            mChart.getXAxis().setDrawAxisLine(false);
+            mChart.getAxisLeft().setDrawAxisLine(false);
+            mChart.getAxisRight().setDrawAxisLine(false);
             mChart.getDescription().setEnabled(false);
-            mChart.setMaxVisibleValueCount(60);
-            mChart.setPinchZoom(false);
-            mChart.setDrawGridBackground(false);
+            mChart.animateY(1000);
+            mChart.getAxisLeft().setAxisMinimum(0);
+            mChart.getAxisRight().setAxisMinimum(0);
+            mChart.getAxisLeft().setEnabled(false);
 
-            XAxis xl = mChart.getXAxis();
-            xl.setPosition(XAxis.XAxisPosition.BOTTOM);
-            //xl.setTypeface(mTfLight);
-            xl.setDrawAxisLine(true);
-            xl.setDrawGridLines(false);
-            xl.setGranularity(10f);
 
-            YAxis yl = mChart.getAxisLeft();
-           // yl.setTypeface(mTfLight);
-            yl.setDrawAxisLine(true);
-            yl.setDrawGridLines(true);
-            yl.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-//        yl.setInverted(true);
 
-            YAxis yr = mChart.getAxisRight();
-           // yr.setTypeface(mTfLight);
-            yr.setDrawAxisLine(true);
-            yr.setDrawGridLines(false);
-            yr.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-//        yr.setInverted(true);
+
 
         }
     }
