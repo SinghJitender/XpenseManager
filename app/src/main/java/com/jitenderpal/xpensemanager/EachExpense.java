@@ -10,58 +10,72 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import com.github.mikephil.charting.data.PieEntry;
+import com.jitenderpal.xpensemanager.Adapters.EachExpenseCardViewAdapter;
 import com.jitenderpal.xpensemanager.Adapters.ExpenseDetailsCardViewAdapter;
-import com.jitenderpal.xpensemanager.Adapters.RecyclerViewAdapter;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 import Helpers.StaticData;
 
-public class ExpenseDetails extends AppCompatActivity {
+public class EachExpense extends AppCompatActivity {
 int year=0,month=0;
 float total=0;
+String title;
 SQLiteDatabase mydatabase;
-ArrayList<String> titles;
-ArrayList<Float> sumAmount;
+ArrayList<String> description,tags,date,dayofweek;
+ArrayList<Float> amount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense_details);
+        setContentView(R.layout.activity_each_expense);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mydatabase = openOrCreateDatabase(StaticData.DATABASE_NAME, MODE_PRIVATE, null);
-
         try{
             Bundle extras = getIntent().getExtras();
             total = extras.getFloat("total");
             year = extras.getInt("year");
             month = extras.getInt("month");
+            title = extras.getString("title");
         } catch (Exception e)
         {
-            Log.d("J:ExpenseDetails",e+"");
+            Log.d("J:EachExpense",e+"");
         }
-        Cursor itemSet = mydatabase.rawQuery( "SELECT title, sum(amount) FROM "+ StaticData.MAIN_TABLE_NAME+" where year = '"+year+"' AND month='"+month+"' GROUP BY title", null);
+
+        Cursor itemSet = mydatabase.rawQuery( "SELECT amount,description,tags,date,day FROM "+ StaticData.MAIN_TABLE_NAME+" where year = '"+year+"' AND month='"+month+"' AND title='"+title+"'", null);
         int allItem = itemSet.getCount();
-        titles = new ArrayList<>(allItem);
-        sumAmount = new ArrayList<>(allItem);
+        description = new ArrayList<>(allItem);
+        tags = new ArrayList<>(allItem);
+        amount = new ArrayList<>(allItem);
+        date = new ArrayList<>(allItem);
+        dayofweek = new ArrayList<>(allItem);
         for(int k=0;k<allItem;k++)
         {
             itemSet.moveToNext();
-            titles.add(itemSet.getString(0));
-            sumAmount.add(itemSet.getFloat(1));
+            amount.add(itemSet.getFloat(0));
+            description.add(itemSet.getString(1));
+            tags.add(itemSet.getString(2));
+            date.add(itemSet.getString(3));
+            dayofweek.add(itemSet.getString(4));
+
         }
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        ExpenseDetailsCardViewAdapter mAdapter = new ExpenseDetailsCardViewAdapter(titles,sumAmount,total,year,month,this);
+        EachExpenseCardViewAdapter mAdapter = new EachExpenseCardViewAdapter(amount,description,tags,date,dayofweek,year,month,this);
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
         recyclerView.setAdapter(mAdapter);
-    }
 
+
+
+
+    }
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             mydatabase.close();
-            Intent i = new Intent(ExpenseDetails.this,HomeScreen.class);
+            Intent i = new Intent(EachExpense.this,ExpenseDetails.class);
+            i.putExtra("year",year);
+            i.putExtra("month",month);
+            i.putExtra("total",total);
             startActivity(i);
             finish();
             return false;
@@ -71,10 +85,12 @@ ArrayList<Float> sumAmount;
     @Override
     public boolean onSupportNavigateUp(){
         mydatabase.close();
-        Intent i = new Intent(ExpenseDetails.this,HomeScreen.class);
+        Intent i = new Intent(EachExpense.this,ExpenseDetails.class);
+        i.putExtra("year",year);
+        i.putExtra("month",month);
+        i.putExtra("total",total);
         startActivity(i);
         finish();
         return true;
     }
-
 }

@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -129,14 +130,6 @@ SQLiteDatabase mydatabase;
         });
 
     } // end of class
-    @Override
-    public boolean onSupportNavigateUp(){
-        mydatabase.close();
-        Intent i = new Intent(AddNewExpense.this,HomeScreen.class);
-        startActivity(i);
-        finish();
-        return true;
-    }
 
     private ArrayAdapter<String> getTitles(Context context,SQLiteDatabase mydatabase) {
         String titles[] ;
@@ -193,4 +186,23 @@ SQLiteDatabase mydatabase;
         Date date = new Date();
         return dateFormat.format(date).toString();
     }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent i = new Intent(AddNewExpense.this,HomeScreen.class);
+            startActivity(i);
+            finish();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        mydatabase.close();
+        Intent i = new Intent(AddNewExpense.this,HomeScreen.class);
+        startActivity(i);
+        finish();
+        return true;
+    }
+
 }

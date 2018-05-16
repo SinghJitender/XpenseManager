@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".HomeScreen" />
         <activity android:name=".AddNewExpense" />
-        <activity android:name=".ExpenseDetails"></activity>
+        <activity android:name=".ExpenseDetails" />
+        <activity android:name=".EachExpense"></activity>
     </application>
 
 </manifest>

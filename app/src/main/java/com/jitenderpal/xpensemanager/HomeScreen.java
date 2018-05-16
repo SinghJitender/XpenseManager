@@ -9,11 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.data.PieEntry;
 import com.jitenderpal.xpensemanager.Adapters.RecyclerViewAdapter;
@@ -150,5 +152,20 @@ Animation fadeIn,fadeOut;
         RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(pieinfo,piedata,maxValue,this);
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
         recyclerView.setAdapter(mAdapter);
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            int click=0;
+            if(click==2) {
+                finish();
+                return false;
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Press again to exit.",Toast.LENGTH_SHORT).show();
+                click++;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
