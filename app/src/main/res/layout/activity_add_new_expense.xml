@@ -63,6 +63,7 @@
                     app:mtf_backgroundColor="@color/lightgrey"
                     app:mtf_image="@drawable/title"
                     app:mtf_animationDuration="200"
+
                     android:padding="5dp">
 
                     <AutoCompleteTextView
@@ -72,6 +73,10 @@
                         android:hint="Title"
                         android:textColor="#000"
                         android:textColorHint="#000"
+                        android:maxLength="50"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
                         android:textSize="15sp" />
                 </com.github.florent37.materialtextfield.MaterialTextField>
 
@@ -90,8 +95,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Amount"
+                        android:maxLength="30"
                         android:textColor="#000"
+                        android:maxLines="1"
                         android:inputType="number"
+                        android:imeOptions="actionNext"
                         android:textColorHint="#000"
                         android:textSize="15sp" />
                 </com.github.florent37.materialtextfield.MaterialTextField>
@@ -112,8 +120,10 @@
                         android:hint="Description"
                         android:textColor="#000"
                         android:textColorHint="#000"
-                        android:inputType="textMultiLine"
-                        android:ems="10"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:imeOptions="actionNext"
                         android:textSize="15sp" />
 
                 </com.github.florent37.materialtextfield.MaterialTextField>
@@ -135,7 +145,10 @@
                         android:digits="0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz,. "
                         android:textColor="#000"
                         android:textColorHint="#000"
-                        android:inputType="textMultiLine"
+                        android:imeOptions="actionGo"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:inputType="text"
                         android:textSize="15sp" />
 
                 </com.github.florent37.materialtextfield.MaterialTextField>
